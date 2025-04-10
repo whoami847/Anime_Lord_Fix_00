@@ -1,13 +1,13 @@
 import os
 
 # Telegram Bot API Token
-API_TOKEN = os.getenv("API_TOKEN")
+API_TOKEN = os.getenv("8018682528:AAEB0W9Ljb8Prfyi9qeVYX93OZzcGBuLEYA")
 
 # Admin User IDs (can be a list of admin IDs)
-ADMIN_IDS = [123456789]  # Replace with your admin IDs
+ADMIN_IDS = [7282066033]  # Replace with your admin IDs
 
 # Force Subscription Channel (optional)
-FORCE_SUB_CHANNEL = "@your_channel"  # Replace with your channel
+FORCE_SUB_CHANNEL = "@just_test_only_0"  # Replace with your channel
 
 # Bot settings
 WELCOME_MESSAGE = "Welcome to Anime Lord Bot! Please subscribe to the channel and try again."
