@@ -1,7 +1,7 @@
 import os
 
 # Telegram Bot API Token
-API_TOKEN = os.getenv("8018682528:AAEB0W9Ljb8Prfyi9qeVYX93OZzcGBuLEYA")
+API_TOKEN = "8018682528:AAEB0W9Ljb8Prfyi9qeVYX93OZzcGBuLEYA"  # Directly assign your API token here
 
 # Admin User IDs (can be a list of admin IDs)
 ADMIN_IDS = [7282066033]  # Replace with your admin IDs
