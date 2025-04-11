@@ -1,3 +1,4 @@
 pyrogram==2.0.0
 Flask==2.1.1
 tgcrypto
+python-dotenv
