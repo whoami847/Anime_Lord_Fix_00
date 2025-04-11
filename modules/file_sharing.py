@@ -1,4 +1,7 @@
 async def file_link_handler(client, message):
-    # Handle file sharing logic
-    file_path = "path/to/file"  # Replace with actual file path
-    await message.reply(f"Here is your file link: {file_path}")
+    if message.reply_to_message and message.reply_to_message.document:
+        file_id = message.reply_to_message.document.file_id
+        file_link = f"https://t.me/{client.me.username}?start=file_{file_id}"
+        await message.reply(f"📁 File Link: {file_link}")
+    else:
+        await message.reply("❌ Please reply to a file with /genlink.")
