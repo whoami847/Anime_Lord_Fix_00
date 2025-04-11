@@ -1,5 +1,9 @@
+import time
 from pyrogram import Client, filters
 from config import API_TOKEN, API_ID, API_HASH, WELCOME_MESSAGE, ADMIN_IDS, FORCE_SUB_CHANNEL
+
+# Time synchronization attempt
+time.sleep(2)  # Wait for 2 seconds before starting the Pyrogram client connection
 
 # Client সেটআপ
 app = Client(
