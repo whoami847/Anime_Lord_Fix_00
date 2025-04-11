@@ -1,22 +1,37 @@
-import time
-from pyrogram import Client, filters
-from config import API_TOKEN, API_ID, API_HASH, WELCOME_MESSAGE, ADMIN_IDS, FORCE_SUB_CHANNEL
+import asyncio
+from threading import Thread
+from flask import Flask
+from pyrogram import Client
+from config import API_ID, API_HASH, API_TOKEN
 
-# Time synchronization attempt
-time.sleep(2)  # Wait for 2 seconds before starting the Pyrogram client connection
+# Flask App (Keep-Alive)
+flask_app = Flask(__name__)
 
-# Client সেটআপ
+@flask_app.route('/')
+def home():
+    return "Anime Lord Bot is Alive!"
+
+def run_flask():
+    flask_app.run(host='0.0.0.0', port=8080)
+
+# Start Flask in a Daemon Thread
+Thread(target=run_flask, daemon=True).start()
+
+# Pyrogram Bot
 app = Client(
     "anime_lord_bot",
-    api_id=API_ID,  # API_ID যোগ করা হয়েছে
-    api_hash=API_HASH,  # API_HASH যোগ করা হয়েছে
-    bot_token=API_TOKEN  # Bot Token যোগ করা হয়েছে
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=API_TOKEN,
+    in_memory=True,
+    timeout=30,
+    retries=5
 )
 
-# /start কমান্ড হ্যান্ডলার
 @app.on_message(filters.command("start"))
 async def start(client, message):
-    await message.reply(WELCOME_MESSAGE)
+    await message.reply("Hello from Anime Lord Bot!")
 
-# বট চালানো
-app.run()
+if __name__ == "__main__":
+    print("Bot started!")
+    app.run()
