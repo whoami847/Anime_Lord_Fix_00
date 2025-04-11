@@ -1,12 +1,5 @@
-import time
-from threading import Timer
+import asyncio
 
 async def auto_delete_handler(client, message):
-    delete_time = 20 * 60  # 20 minutes in seconds
-    Timer(delete_time, delete_message, [message]).start()
-
-def delete_message(message):
-    try:
-        message.delete()
-    except Exception as e:
-        print(f"Failed to delete message: {e}")
+    await asyncio.sleep(1200)  # 20 মিনিট অপেক্ষা করুন
+    await message.delete()
