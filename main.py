@@ -1,20 +1,21 @@
 import os
 from threading import Thread
-from flask import Flask
 from pyrogram import Client, filters
+from waitress import serve  # Production-ready WSGI server
+from flask import Flask
 from config import API_ID, API_HASH, API_TOKEN
 
-# Flask App (Keep-Alive)
+# Flask App Setup
 flask_app = Flask(__name__)
 
 @flask_app.route('/')
-def home():
-    return "Bot is running!"
+def health_check():
+    return "OK", 200  # Simple health check response
 
 def run_flask():
-    flask_app.run(host='0.0.0.0', port=8080)
+    serve(flask_app, host="0.0.0.0", port=8080)  # Using Waitress for production
 
-# Pyrogram Bot
+# Pyrogram Bot Setup
 app = Client(
     "anime_lord_bot",
     api_id=API_ID,
@@ -24,11 +25,13 @@ app = Client(
 
 @app.on_message(filters.command("start"))
 async def start(client, message):
-    await message.reply("Hello from Anime Lord Bot!")
+    await message.reply("Bot is running!")
 
 if __name__ == "__main__":
-    # Start Flask in a separate thread
-    Thread(target=run_flask, daemon=True).start()
+    # Start Flask in separate thread
+    flask_thread = Thread(target=run_flask)
+    flask_thread.daemon = True
+    flask_thread.start()
     
-    print("Bot started!")
+    print("Starting Telegram Bot...")
     app.run()
