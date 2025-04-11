@@ -1,2 +1,3 @@
-web: python health.py
 worker: python main.py
+web: python health.py
+
