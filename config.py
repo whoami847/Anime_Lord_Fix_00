@@ -1,11 +1,14 @@
+from dotenv import load_dotenv
 import os
 
+load_dotenv()
+
 # Telegram API ID and API Hash (required for Client API)
-API_ID = 21463947  # Directly assign your API ID
-API_HASH = "39d6a5245f670ee68c507e274b3c7b3d"  # Directly assign your API Hash
+API_ID = int(os.getenv("API_ID"))  # Load from .env file
+API_HASH = os.getenv("API_HASH")  # Load from .env file
 
 # Telegram Bot API Token
-API_TOKEN = "8018682528:AAEB0W9Ljb8Prfyi9qeVYX93OZzcGBuLEYA"  # Directly assign your Bot API Token from BotFather
+API_TOKEN = os.getenv("API_TOKEN")  # Load from .env file
 
 if not API_TOKEN:
     raise ValueError("API_TOKEN is not set in environment variables")
