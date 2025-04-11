@@ -15,15 +15,15 @@ app = Client(
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=API_TOKEN,
-    in_memory=True  # Koyeb-এর জন্য গুরুত্বপূর্ণ
+    workdir="/tmp"  # Koyeb-এর জন্য বিশেষ সেটিং
 )
 
 @app.on_message(filters.command("start"))
 async def start(client, message):
-    logger.info(f"Received /start from {message.from_user.id}")
-    await message.reply("✅ বট সচল রয়েছে!")
+    logger.info(f"{message.from_user.id} থেকে /start কমান্ড পাওয়া গেছে")
+    await message.reply("🎉 বট সফলভাবে কাজ করছে!")
 
 if __name__ == "__main__":
-    logger.info("বট শুরু হচ্ছে...")
+    logger.info("বট চালু করা হচ্ছে...")
     app.run()
-    logger.info("বট বন্ধ হচ্ছে")
+    logger.info("বট বন্ধ করা হয়েছে")
