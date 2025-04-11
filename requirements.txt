@@ -1,4 +1,5 @@
 pyrogram==1.4.16
-Flask==2.1.1
+Flask==2.1.2
 tgcrypto
 python-dotenv
+werkzeug==2.1.2
